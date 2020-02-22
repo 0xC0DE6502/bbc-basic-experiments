@@ -8,3 +8,4 @@
 7G?1=(F(g+1,h)<2)*((q=1)+(q=0)):G?2=(F(g,h+1)<2)*((r=1)+(r=0)):G?3=(F(g-1,h)<2)*((q=255)+(q=0)):IFg=X A.h=Y:G.9
 8REP.I=RND(4)-1:U.G?I:V.V,g,h,C?F(g,h):A?2=(1A.I)+2*(I=3):g=g+A?2:A?3=(1A.(I+1))+2*(I=0):h=h+A?3:V.V,g,h,96:?A=g:A?1=h
 9IFg=X A.h=Y i=K:N.:L=L-1:SO.0,-10,6,10:V.V,X,Y,C?F(X,Y):F.i=1TOK:A=G+4*i:V.V,?A,A?1,C?F(?A,A?1):N.:G.3EL.N.:G.4
+
