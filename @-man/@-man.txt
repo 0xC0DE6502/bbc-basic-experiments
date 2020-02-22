@@ -1,3 +1,8 @@
+REM Copyright (c) 2020 0xC0DE (Twitter 0xC0DE6502)
+REM @-man (AT-man) for Acorn Electron, BBC Micro, etc.
+REM Keys: Z/X=left/right, K/M=up/down
+REM Challenge was: max 10 lines of BASIC, max 120 chars each
+
 0MO.6:V.28,6,24,32,2:DIMF(26,20),C 4,G 20:H=0:S=0:F$="9069041190112714413111531821316129043111214113141411413130":V=0
 1!C=&232E20:i=0:v=1:F.y=0TO10:F.x=0TO13:i=i-(v=1):v=v-1-(v=1)*VA.MI.F$,i,1):u=v=0:IFV=0L=3:K=1:H=-(S>H)*S-(S<=H)*H:S=0
 2c=1+(1A.i):s=26-x:t=20-y:F(x,y)=c:F(s,y)=c:F(x,t)=c:F(s,t)=c:x=x+u:v=v-u:N.,:CLS:F.y=0TO20:F.x=0TO26:V.C?F(x,y):N.,:P=0
