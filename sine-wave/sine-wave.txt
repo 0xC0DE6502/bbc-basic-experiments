@@ -1,0 +1,5 @@
+REM Copyright (c) 2020 0xC0DE (Twitter 0xC0DE6502)
+REM Sine Wave one-liner for Acorn Electron, BBC Micro, etc.
+
+MO.2:V.23,1,0;0;0;0;:P=2*PI:F.C=1TO15:GC.0,C:F.X=0TO1280S.4:Y=512+COS(P*C/15)*300*SIN(P*X/1280):PL.69,X+RND(16)-8,Y+RND(32)-16:N.:V.19,C,0;0;:N.:REP.D=RND(7):F.C=1TO15:V.19,C,D;0;:F.K=1TO4:OS."FX19":N.:V.19,C,0;0;:N.:U.0
+

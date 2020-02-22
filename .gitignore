@@ -8,4 +8,11 @@
 @-man/*
 !@-man/@-man.txt
 
+!sine-wave/
+sine-wave/*
+!sine-wave/sine-wave.txt
+
+!tesselation-1/
+tesselation-1/*
+!tesselation-1/tesselation-1.txt
 
