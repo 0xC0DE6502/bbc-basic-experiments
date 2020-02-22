@@ -1,0 +1,11 @@
+# blacklist files/folders in same directory as .gitignore
+/*
+
+# then whitelist some files/folders
+!.gitignore
+
+!@-man/
+@-man/*
+!@-man/@-man.txt
+
+
