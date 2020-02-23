@@ -20,4 +20,7 @@ tesselation-1/*
 rotating-square/*
 !rotating-square/rotating-square.txt
 
+!1100-followers/
+1100-followers/*
+!1100-followers/1100-followers.txt
 
