@@ -16,6 +16,10 @@ sine-wave/*
 tesselation-1/*
 !tesselation-1/tesselation-1.txt
 
+!tesselation-2/
+tesselation-2/*
+!tesselation-2/tesselation-2.txt
+
 !rotating-square/
 rotating-square/*
 !rotating-square/rotating-square.txt

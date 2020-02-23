@@ -1,0 +1,6 @@
+REM Copyright (c) 2020 0xC0DE (Twitter 0xC0DE6502)
+REM Tesselation 2 (Cairo tesselation) for Acorn Electron, BBC Micro, etc.
+
+0MO.1:V.23,1,0;0;0;0;:C=1:R=64:REP.S=2*R:T=3*R:U=6*R:GC.0,C:F.Y=T+1024TO-R S.-U:F.X=-U TO1280S.U:PROCv(X,Y):PROCv(X+T,Y-T):PROCh(X+R,Y-S):PROCh(X+4*R,Y-5*R):N.,:R=R/2:C=C+1:U.R<9:REP.U.0
+1DEFPROCv(X,Y):MOVEX,Y:DR.X+S,Y:DR.X+T,Y-T:DR.X+S,Y-U:DR.X,Y-U:DR.X-R,Y-T:DR.X,Y:E.
+2DEFPROCh(X,Y):MOVEX,Y:DR.X+T,Y+R:DR.X+U,Y:DR.X+U,Y-S:DR.X+T,Y-T:DR.X,Y-S:DR.X,Y:E.
