@@ -1,0 +1,7 @@
+REM Copyright (c) 2020 0xC0DE (Twitter 0xC0DE6502)
+REM BBC BASIC one-liner: rotating square with fake perspective for Acorn Electron, BBC Micro, etc.
+REM incorporates ideas by @leelegionsmith and @nemo20000
+REM tweak W to change shape of the square. W=1.0 for regular square
+
+MO.2:V.23,1,0;0;0;0;:M=640:N=512:A%=19:W=0.3:F.C=1TO15:GC.0,C:P=0.5*PI*C/15:X=450*COS(P):Y=450*SIN(P):A=M+X:B=N+W*Y:MOV.A,B:DR.M-Y,N+W*X:DR.M-X,N-W*Y:DR.M+Y,N-W*X:DR.A,B:N.:REP.F.C=1TO15:V.A%,C,7;0;:CA.-12:CA.-12:V.A%,C,0;0;:N.:U.0
+
