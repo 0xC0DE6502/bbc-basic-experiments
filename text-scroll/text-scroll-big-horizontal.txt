@@ -1,0 +1,6 @@
+REM Copyright (c) 2020 0xC0DE (Twitter 0xC0DE6502)
+REM Big Text Horizontal Scroller one-liner for Acorn Electron, BBC Micro, etc.
+REM Use uppercase letters only. Underscore translates to space. Use exactly 5 symbols
+
+MO.6:V.23,1,0;0;0;0;23,64,-1;-1;-1;-1;:?&CFF=0:A=&A00:S=A+5:$A="EPIC_":F.R=0TO7:F.P=0TO4:B=R?(A+8*P?A):F.b=1TO8:?S=(128A.B)/4+32:S=S+1:B=B*2:N.,:?S=13:S=S+1:N.:REP.F.K=0TO39:V.30:F.R=0TO7:S=A+5+R*41:P.RI.$S,40-K)LE.$S,K);:N.,:U.0
+

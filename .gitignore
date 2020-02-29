@@ -28,3 +28,6 @@ rotating-square/*
 1100-followers/*
 !1100-followers/1100-followers.txt
 
+!text-scroll/
+text-scroll/*
+!text-scroll/text-scroll*.txt

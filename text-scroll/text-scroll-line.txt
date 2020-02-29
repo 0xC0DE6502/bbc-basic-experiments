@@ -1,0 +1,6 @@
+REM Copyright (c) 2020 0xC0DE (Twitter 0xC0DE6502)
+REM Text Scroller Line one-liner for Acorn Electron, BBC Micro, etc.
+REM Use exactly 40 symbols
+
+MO.6:V.23,1,0;0;0;0;:A%=19:C$="    --===[ Twitter 0xC0DE6502 ]===--    ":REP.F.K=0TOLENC$-1:P.TAB(0,12)RI.C$,40-K)LE.C$,K):F.I=1TO3:CA.-12:N.,:U.0
+

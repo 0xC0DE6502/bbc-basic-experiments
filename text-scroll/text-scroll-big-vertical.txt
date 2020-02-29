@@ -1,0 +1,6 @@
+REM Copyright (c) 2020 0xC0DE (Twitter 0xC0DE6502)
+REM Big Text Vertical Scroller one-liner for Acorn Electron, BBC Micro, etc.
+REM Use uppercase letters only. Underscore translates to space
+
+MO.6:V.23,1,0;0;0;0;23,64,-1;-1;-1;-1;:?&CFF=0:A=&A00:$A="HELLO_TWITTER__":L=LEN$A:REP.F.P=0TOL-1:F.R=0TO7:S=A+L:B=R?(A+8*P?A):F.b=1TO8:?S=(128A.B)/4+32:S=S+1:B=B*2:N.:?S=13:P.TAB(16)$(A+L):N.,:U.0
+
