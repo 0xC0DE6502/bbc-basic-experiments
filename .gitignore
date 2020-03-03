@@ -31,3 +31,9 @@ rotating-square/*
 !text-scroll/
 text-scroll/*
 !text-scroll/text-scroll*.txt
+
+!coloured-background/
+coloured-background/*
+!coloured-background/coloured-background*.txt
+
+

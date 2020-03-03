@@ -1,0 +1,5 @@
+REM Copyright (c) 2020 0xC0DE (Twitter 0xC0DE6502)
+REM Coloured Background 2, one-liner for Acorn Electron, BBC Micro, etc.
+
+MO.2:V.23,1,0;0;0;0;28,5,25,15,10:F.C=7TO1S.-1:C.C:P."0xC0DE6502"':N.:C$="78A2078E21FEEAEAEAEAEACA10F530F1":F.P=1TOLENC$-1S.2:?(&A00+(P-1)/2)=EV.("&"+MI.C$,P,2)):N.:CA.&A00
+
