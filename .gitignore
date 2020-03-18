@@ -7,6 +7,7 @@
 !@-man/
 @-man/*
 !@-man/@-man.txt
+!@-man/@-man.ssd
 
 !sine-wave/
 sine-wave/*
