@@ -1,0 +1,17 @@
+REM Copyright (c) 2020 0xC0DE (Twitter 0xC0DE6502)
+REM Cavern Cruiser for Acorn Electron, BBC Micro, etc.
+REM Keys: Z/X=left/right, K/M=up/down
+REM Self-imposed challenge was: max 10 lines of BASIC, max 120 chars each (aka PUR-120)
+REM If you fly higher, the score increases faster
+REM The difficulty level increases every 500 points
+REM Don't hit the wall of the obstacles ;)
+
+0A%=0:X%=1:B=SGN(USR-12A.&FF00):MO.4-B*3:V.23,1,0;0;0;0;23,80,16,16,16,186,170,238,124,56:W%=66:X%=W%:P%=19:Q%=26:S%=0
+1Z%=255:F.K=0TO7:V.23,64+K:F.L=1TO8:V.Z%:N.:V.23,72+K:F.L=1TO8:V.255-Z%:N.:Z%=Z%/2:N.:Y%=1:N%=1:T%=40:L%=127:M%=L%
+2A%=L%/8:B%=L%A.7:C%=(W%-8+B%)/8:D%=(W%-8+B%)A.7:V.23,81,0,146,84,56,238,56,84,146,31,P%,Q%,32,30,11:IFZ%>10Z%=10
+3C.1:P.STRI.A%,"@");:V.72+B%:P.STRI.C%," ");:V.64+D%:P.STRI.38-A%-C%,"@"):C.B+1:Q%=Q%-(Q%>10)*INKEY-71+(Q%<31)*INKEY-102
+4P%=P%+INKEY-98-INKEY-67:V.31,A%+RND(W%/8-1),0,32-49*(RND(40)<=Z%):C.3:V.31,P%,Q%,80:P.TAB(34,31);S%;:Z%=S%/500
+5IFPO.P%*32+16,1040-32*Q%)OS."FX20,0":C.3:P.TAB(16,16)"GAME OVER"TAB(10,18)"<SPACE> to play again":REP.U.INKEY-99:G.0
+6IFT%T%=T%-1:S%=S%+4-Q%/11:W%=W%-(W%<X%)*Y%:W%=W%+(W%>X%)*Y%:L%=L%-(L%<M%)*N%:L%=L%+(L%>M%)*N%:G.2EL.T%=10+RND(30-2*Z%)
+7R%=42-Z%+RND(70-Z%):IFM%+R%>264G.2EL.X%=R%:Y%=RND(2+Z%/2):R%=8+RND(200):IFR%+X%>264G.2EL.M%=R%:N%=RND(2+Z%/2):G.2
+

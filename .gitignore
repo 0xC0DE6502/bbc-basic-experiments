@@ -41,4 +41,7 @@ text-scroll/*
 coloured-background/*
 !coloured-background/coloured-background*.txt
 
+!cavern-cruiser/
+cavern-cruiser/*
+!cavern-cruiser/cavern-cruiser.txt
 
