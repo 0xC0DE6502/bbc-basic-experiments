@@ -1,0 +1,76 @@
+   10REM (c) 0xC0DE Dec 2020
+   20REM Example code for a bullet travelling from an enemy in the *general direction* of a player
+   30REM Illustrates one time calculation of (stepx, stepy) needed to advance the bullet to the (old) location of the player
+   40REM Written with a translation to 6502 asm code in mind
+   50:
+   60MODE5
+   70VDU19,2,2;0;
+   80:
+   90DIMSX%(32),SY%(32)
+  100FORN%=0TO31:READ SX%(N%):NEXTN%
+  110FORN%=0TO31:READ SY%(N%):NEXTN%
+  120:
+  130REPEAT
+  140VDU4,23,1,0;0;0;0;12,5
+  150:
+  160EX%=RND(160):EY%=RND(256): REM enemy coords
+  170PX%=RND(160):PY%=RND(256): REM player coords
+  180:
+  190REM edge cases work also (dx%==0, dy%==0)
+  200REM when dx%==dy%==0 the bullet always goes down
+  210REM this is okay and not a situation that will happen often (you would be standing inside the enemy)
+  220:
+  230MOVE2*4*EX%,1024-4*EY%:GCOL0,1:PRINT"E": REM mirrored y-axis
+  240MOVE2*4*PX%,1024-4*PY%:GCOL0,2:PRINT"P": REM mirrored y-axis
+  250GCOL0,3
+  260:
+  270PROCgetsteps: REM sets sx% and sy%, only done once at the start of each bullet
+  280MOVE300,1000:PRINT"PEW PEW PEW"
+  290X%=EX%*256:Y%=EY%*256: REM bullet starts at position of enemy, converted to 8.8 fixed width
+  300:
+  310FORS%=1TO80: REM number of bullet steps (arbitrarily chosen)
+  320PLOT69,2*4*(X% DIV 256),1024-4*(Y% DIV 256): REM mirrored y-axis
+  330X%=X%+sx%:Y%=Y%+sy%
+  340NEXTS%
+  350:
+  360UNTIL0
+  370END
+  380:
+  390DEFPROCgetsteps
+  400ex%=EX%:ey%=EY% DIV 2: REM DIV 2: convert wide pixels to square pixels (we do Y/2 instead of X*2)
+  410px%=PX%:py%=PY% DIV 2
+  420real_dx%=px%-ex%:real_dy%=py%-ey%
+  430IFreal_dy%>=0 AND real_dx%>=0:oct%=1: REM bottom right
+  440IFreal_dy%>=0 AND real_dx%<0:oct%=2: REM bottom left
+  450IFreal_dy%<0 AND real_dx%<0:oct%=5: REM top left
+  460IFreal_dy%<0 AND real_dx%>=0:oct%=6: REM top right
+  470dx%=ABS(real_dx%):dy%=ABS(real_dy%)
+  480IFdy%>=dx%:GOTO510
+  490tmp%=dx%:dx%=dy%:dy%=tmp%: REM swap dx% and dy% when dy%<dx%
+  500IFoct%AND1:oct%=oct%-1:ELSEoct%=oct%+1: REM and adjust octant
+  510:
+  520REM 360/32=11.25 degree segments
+  530REM but I'm looking at the 4 points in the middle of these 11.25 deg segments! (for better accuracy)
+  540REM corresponding line coefficients for these 4 checkpoints are therefore:
+  550REM tan(45.00+(11.25/2))=~1.22 --> 1.25 = dx + dx>>2
+  560REM tan(56.25+(11.25/2))=~1.87 --> 1.75 = dx + dx>>1 + dx>>2
+  570REM tan(67.50+(11.25/2))=~3.30 --> 3.25 = dx<<1 + dx + dx>>2
+  580REMtan(78.75+(11.25/2))=~10.15 --> 10.00 = dx<<3 + dx<<1
+  590:
+  600REM these calculations look weird because I have the translation to 6502 asm in mind here
+  610:
+  620half_dx%=dx% DIV 2
+  630quart_dx%=dx% DIV 4
+  640dbl_dx%=dx%*2: REM if dx%*2 already 'overflows' (>=256) then we know dy% (0..127 because DIV2) can never be bigger than it and we move on to the test that is below that number (in the 6502 asm version that is)
+  650times8_dx%=dx%*8: REM if dx%*8 already 'overflows' (>=256) then we know dy% (0..127 because DIV2) can never be bigger than it and we move on to the test that is below that number (in the 6502 asm version that is)
+  660IF dy%>=times8_dx%+dbl_dx%:d%=4:ELSEIF dy%>=dbl_dx%+dx%+quart_dx%:d%=3:ELSEIF dy%>=dx%+half_dx%+quart_dx%:d%=2:ELSEIF dy%>=dx%+quart_dx%:d%=1:ELSEd%=0
+  670IFoct%AND1:idx%=(4*oct%+d%)MOD32:ELSEidx%=4*(oct%+1)-d%: REM MOD32 not needed for an even octant
+  680sx%=SX%(idx%):sy%=SY%(idx%)
+  690ENDPROC
+  700:
+  710REM we could exploit the symmetry of these tables if we really wanted to
+  720REM pixel step in horizontal direction (wide pixels), as calculated by Python script
+  730DATA 512, 502, 473, 426, 362, 284, 196, 100, 0, -100, -196, -284, -362, -426, -473, -502, -512, -502, -473, -426, -362, -284, -196, -100, 0, 100, 196, 284, 362, 426, 473, 502
+  740REM pixel step in vertical direction, as calculated by Python script
+  750DATA 0, 200, 392, 569, 724, 851, 946, 1004, 1024, 1004, 946, 851, 724, 569, 392, 200, 0, -200, -392, -569, -724, -851, -946, -1004, -1024, -1004, -946, -851, -724, -569, -392, -200
+  760:
