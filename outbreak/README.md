@@ -80,7 +80,7 @@ Start ball. Set initial position (B,C) of the ball ('O') in the middle of and ju
 4X=X+(INKEY-26A.X>0)-(INKEY-122A.X<15):V.4,F,X,Y,-S*(X>0),X<1,A,A:O=B:IFG=0G.1
 ```
 
-Move and draw bat. Update horizontal position (X) of the bat by checking the left and right arrow keys. Draw the left part of the bat. Remember the current horizontal position of the ball (O) so we know where to erase it later. If we have smashed all 112 bricks, rebuild the wall and continue playing (line 1).
+Move and draw bat. Update horizontal position (X) of the bat by checking the left and right arrow keys. Draw the left part of the bat. Remember the current horizontal position of the ball (O) so we know where to erase it later. If we have smashed all 112 bricks, we start the 'next' level from line 1.
 
 ```
 5V.A,-S*(X<15),5:P=C:B=B+V:C=C+W:IFB<1B=1:V=-V:EL.IFB>18:B=18:V=-V:ME$="0xC0DE"
@@ -110,7 +110,7 @@ Hit brick. If the ball is anywhere on the screen above the bat and the colour (Z
 9GC.3,7:MOV.O*T,P*S:V.M:MOV.B*T,C*S:V.M:IFD:W=-W:G=G-1:V.4,F,11,30:P.Q:G.4EL.G.4
 ```
 
-Redraw ball. Erase the ball at its old position (O,P) and draw it at its new position (B,C). If we hit a brick (as checked in the previous line), decrement the total brick counter (G) and update the your score (Q) as shown on the screen. Finally, continue playing from line 4.
+Redraw ball. Erase the ball at its old position (O,P) and draw it at its new position (B,C). If we hit a brick (as checked in the previous line), decrement the total brick counter (G) and update your score (Q) as shown on the screen. Finally, continue playing from line 4.
 
 
 Outbreak - Copyright (C) 2021 [0xC0DE](https://twitter.com/0xC0DE6502)
