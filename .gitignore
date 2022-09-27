@@ -52,7 +52,12 @@ outbreak/*
 !outbreak/outbreak-screenshot.png
 !outbreak/outbreak.ssd
 
-
-
+!keytest/
+keytest/*
+!keytest/keytest.txt
+!keytest/keytest.6502
+!keytest/keytest.ssd
+!keytest/keytest.uef
+!keytest/!BOOT.txt
 
 

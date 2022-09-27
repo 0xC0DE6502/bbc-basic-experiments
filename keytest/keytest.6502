@@ -1,0 +1,3 @@
+  puttext "!BOOT.txt", "!BOOT", 0, 0
+  putbasic "keytest.txt", "KEYTEST"
+
