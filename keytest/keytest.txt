@@ -1,19 +1,35 @@
-   10FORP=0TO2STEP2
-   20P%=&900
-   30[OPTP
-   40LDA#&B7FF MOD 256:STA&72
-   50LDA#&B7FF DIV 256:STA&73
-   60LDY#0
-   70LDA&F4:STA&74
-   80LDA#12:STA&F4:STA&FE05
-   90LDA#8:STA&F4:STA&FE05
-  100LDA&B7FF:AND#15:STA&70:\ This will suffer from 'ghosting' (e.g. try X+RETURN) only on a real Elk
-  110LDA(&72),Y:AND#15:STA&71:\ This should work fine but I don't know why ;)
-  120LDA#12:STA&F4:STA&FE05
-  130LDA&74:STA&F4:STA&FE05
-  140RTS
-  150]:NEXTP
-  160REPEAT
-  170CALL&900
-  180PRINT~?&70,~?&71
-  190UNTIL0
+   10MODE6: REM 0xC0DE Sep 2022
+   20:
+   30ghosting=FALSE: REM Set to TRUE or FALSE to demonstrate (the absence of) key 'ghosting' (only on a real Electron)
+   40:
+   50*FX200,1
+   60FORP=0TO2STEP2
+   70P%=&900
+   80[OPTP
+   90LDY#0
+  100LDA&F4:STA&84
+  110LDA#8:STA&F4:STA&FE05
+  120LDX#13
+  130.scan
+  140]
+  150IFghosting:[OPTP:LDAkeylo,X:STAselfmod+1:LDAkeyhi,X:STAselfmod+2:.selfmod:LDA&FFFF:]:REM Will produce all kinds of unwanted key 'ghosting' on a real Electron
+  160IFNOTghosting:[OPTP:LDAkeylo,X:STA&80:LDAkeyhi,X:STA&81:LDA(&80),Y:]:REM Will work fine without any unwanted key 'ghosting' on a real Electron, but why exactly!? =)
+  170[OPTP
+  180AND#15:STA&70,X
+  190DEX
+  200BPLscan
+  210LDA#12:STA&F4:STA&FE05
+  220LDA&84:STA&F4:STA&FE05
+  230RTS
+  240.keylo
+  250EQUB&FF:EQUB&FF:EQUB&FF:EQUB&FF:EQUB&FF:EQUB&FF:EQUB&7F:EQUB&BF:EQUB&DF:EQUB&EF:EQUB&F7:EQUB&FB:EQUB&FD:EQUB&FE
+  260.keyhi
+  270EQUB&9F:EQUB&AF:EQUB&B7:EQUB&BB:EQUB&BD:EQUB&BE:EQUB&BF:EQUB&BF:EQUB&BF:EQUB&BF:EQUB&BF:EQUB&BF:EQUB&BF:EQUB&BF
+  280]:NEXTP
+  290REPEAT
+  300CALL&900
+  310FORA=&70TO&7D
+  320PRINT;~?A;" ";
+  330NEXTA
+  340PRINT
+  350UNTIL0

@@ -58,6 +58,10 @@ keytest/*
 !keytest/keytest.6502
 !keytest/keytest.ssd
 !keytest/keytest.uef
+!keytest/keytest-ghosting.ssd
+!keytest/keytest-ghosting.uef
+!keytest/keytest-no-ghosting.ssd
+!keytest/keytest-no-ghosting.uef
 !keytest/!BOOT.txt
 
 
