@@ -64,4 +64,10 @@ keytest/*
 !keytest/keytest-no-ghosting.uef
 !keytest/!BOOT.txt
 
-
+!hscroll/
+hscroll/*
+!hscroll/hscroll.txt
+!hscroll/hscroll.6502
+!hscroll/!BOOT.txt
+!hscroll/hscroll.uef
+!hscroll/hscroll.ssd
